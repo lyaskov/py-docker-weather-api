@@ -2,6 +2,7 @@ import os
 
 import requests
 
+
 def get_weather() -> None:
     api_key = os.getenv("API_KEY")
     city = "Paris"
@@ -17,9 +18,10 @@ def get_weather() -> None:
 
     if response.status_code == 200:
         data = response.json()
-        print(f"{data['location']['name']}/{data['location']['country']}: "
-              f"{data['current']['last_updated']} "
-              f"Weather: {data['current']['temp_c']} Celsius, {data['current']['condition']['text']}")
+        print(f"{data["location"]["name"]}/{data["location"]["country"]}: "
+              f"{data["current"]["last_updated"]} "
+              f"Weather: {data["current"]["temp_c"]} Celsius, "
+              f"{data["current"]["condition"]["text"]}")
     else:
         print(f"Error: {response.status_code}")
         print(response.text)
@@ -27,5 +29,3 @@ def get_weather() -> None:
 
 if __name__ == "__main__":
     get_weather()
-
-
