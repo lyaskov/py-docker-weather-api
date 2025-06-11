@@ -18,10 +18,12 @@ def get_weather() -> None:
 
     if response.status_code == 200:
         data = response.json()
-        print(f"{data["location"]["name"]}/{data["location"]["country"]}: "
-              f"{data["current"]["last_updated"]} "
-              f"Weather: {data["current"]["temp_c"]} Celsius, "
-              f"{data["current"]["condition"]["text"]}")
+        location = data["location"]
+        current = data["current"]
+        print(f"{location['name']}/{location['country']}: "
+              f"{current['last_updated']} "
+              f"Weather: {current['temp_c']} Celsius, "
+              f"{current['condition']['text']}")
     else:
         print(f"Error: {response.status_code}")
         print(response.text)
